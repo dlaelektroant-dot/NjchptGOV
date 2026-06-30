@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Formularz testowy</title>
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:#f2f2f2;
+}
+form{
+    max-width:500px;
+    margin:30px auto;
+    background:#fff;
+    padding:20px;
+    border-radius:10px;
+}
+input, textarea{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    box-sizing:border-box;
+}
+button{
+    padding:10px 20px;
+}
+.checkbox-row{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:10px;
+}
+.checkbox-row input{
+    width:auto;
+    margin:0;
+}
+</style>
+</head>
+<body>
+
+<form id="testForm">
+<h2>Formularz testowy</h2>
+
+<input type="text" name="pole1" placeholder="Pole 1">
+<input type="text" name="pole2" placeholder="Pole 2">
+<input type="text" name="pole3" placeholder="Pole 3">
+<input type="text" name="pole4" placeholder="Pole 4">
+<input type="email" name="email" placeholder="Pole 5 (e-mail)">
+<input type="tel" name="telefon" placeholder="Pole 6 (telefon)">
+<input type="date" name="data" placeholder="Pole 7">
+<input type="text" name="pole8" placeholder="Pole 8">
+<input type="text" name="pole9" placeholder="Pole 9">
+<textarea name="pole10" placeholder="Pole 10"></textarea>
+
+<div class="checkbox-row">
+    <input type="checkbox" id="regulamin" name="regulamin" required>
+    <label for="regulamin">Akceptuję regulamin</label>
+</div>
+
+<button type="submit">Wyślij</button>
+</form>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, addDoc, collection } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+// Konfiguracja Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyCjfSVqHVKog0LYlSV-J65eMH4fKseSQAY",
+  authDomain: "ipip-b6f55.firebaseapp.com",
+  projectId: "ipip-b6f55",
+  storageBucket: "ipip-b6f55.firebasestorage.app",
+  messagingSenderId: "104300079711",
+  appId: "1:104300079711:web:d41a581a873641c2f009ea",
+  measurementId: "G-2RZV1FVP1R"
+};
+
+// Start Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// Obsługa formularza
+document.getElementById("testForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    if (!e.target.regulamin.checked) {
+        alert("Musisz zaakceptować regulamin.");
+        return;
+    }
+
+    const data = {
+        pole1: e.target.pole1.value,
+        pole2: e.target.pole2.value,
+        pole3: e.target.pole3.value,
+        pole4: e.target.pole4.value,
+        email: e.target.email.value,
+        telefon: e.target.telefon.value,
+        data: e.target.data.value,
+        pole8: e.target.pole8.value,
+        pole9: e.target.pole9.value,
+        pole10: e.target.pole10.value,
+        regulamin: e.target.regulamin.checked,
+        timestamp: new Date().toISOString()
+    };
+
+    await addDoc(collection(db, "formularz"), data);
+
+    alert("Wysłano i zapisano do Firebase!");
+});
+</script>
+
+</body>
+</html>
