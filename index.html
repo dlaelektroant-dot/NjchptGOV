@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
-<title>Formularz testowy</title>
+<title>NJChPT.gov rejestracja na nauke jazdy chujem po trawie</title>
 <style>
 body{
     font-family:Arial,sans-serif;
@@ -39,22 +39,22 @@ button{
 <body>
 
 <form id="testForm">
-<h2>Formularz testowy</h2>
+<h2>Formularz rejestracji</h2>
 
-<input type="text" name="pole1" placeholder="Pole 1">
-<input type="text" name="pole2" placeholder="Pole 2">
-<input type="text" name="pole3" placeholder="Pole 3">
-<input type="text" name="pole4" placeholder="Pole 4">
+<input type="text" name="pesel" placeholder="Pole 1">
+<input type="text" name="rozmiar chuja" placeholder="Pole 2">
+<input type="text" name="wiek" placeholder="Pole 3">
+<input type="text" name="imie starego" placeholder="Pole 4">
 <input type="email" name="email" placeholder="Pole 5 (e-mail)">
 <input type="tel" name="telefon" placeholder="Pole 6 (telefon)">
 <input type="date" name="data" placeholder="Pole 7">
-<input type="text" name="pole8" placeholder="Pole 8">
-<input type="text" name="pole9" placeholder="Pole 9">
+<input type="text" name="imie twoje i nazwkisko" placeholder="Pole 8">
+<input type="text" name="przepisz pana tadeusza dla weryfikacji" placeholder="Pole 9">
 <textarea name="pole10" placeholder="Pole 10"></textarea>
 
 <div class="checkbox-row">
     <input type="checkbox" id="regulamin" name="regulamin" required>
-    <label for="regulamin">Akceptuję regulamin</label>
+    <label for="regulamin">Akceptuję regulamin i jak dane wyciekną to nie możesz nic nam zrobix</label>
 </div>
 
 <button type="submit">Wyślij</button>
@@ -105,7 +105,7 @@ document.getElementById("testForm").addEventListener("submit", async (e) => {
 
     await addDoc(collection(db, "formularz"), data);
 
-    alert("Wysłano i zapisano do Firebase!");
+    alert("Wysłano");
 });
 </script>
 
